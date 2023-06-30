@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Pascal's triangle solution."""
 
+
 def pascal_triangle(n):
     """returns a list of lists of integers."""
     if (n <= 0):
