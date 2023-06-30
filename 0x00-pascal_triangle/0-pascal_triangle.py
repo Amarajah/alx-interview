@@ -3,24 +3,16 @@
 
 
 def pascal_triangle(n):
-    """returns a list of lists of integers."""
-    """If n<= 0, return an empty list."""
-    if (n <= 0):
-        return []
-    """Initialize the triangle variable."""
-    triangle = [[1]]
+    """Gives a list of lists representing the Pascal’s triangle of n"""
+    """Initialize triangle with an empty list."""
+    triangle = []
 
-    """Loop through the triangle."""
-    for i in range(1, n):
-        prev_row = triangle[i - 1]
-        curr_row = [1]
-
-        """Append elements."""
-        for j in range(1, i):
-            curr_row.append(prev_row[j - 1] + prev_row[j])
-
-        curr_row.append(1)
-        triangle.append(curr_row)
-
-        """Return triangle as result"""
-        return triangle
+    """Loop through each row and initialize it with its value set as 1."""
+    for i in range(1, n + 1):
+        row = [1] * (i)
+        """Iterate through the current row, except first and last elements."""
+        for j in range(2, i):
+            row[j - 1] = triangle[i - 2][j - 2] + triangle[i - 2][j - 1]
+        """Append row."""
+        triangle.append(row)
+    return triangle
