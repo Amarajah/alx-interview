@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# 0-lockboxes.
+"""0-lockboxes."""
 
 
 def canUnlockAll(boxes):
