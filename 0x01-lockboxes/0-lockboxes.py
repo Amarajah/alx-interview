@@ -3,6 +3,7 @@
 
 
 def canUnlockAll(boxes):
+    """Checking if a box is opened or can be opened."""
     unlocked = [0]
     for box_id, box in enumerate(boxes):
         if not box:
