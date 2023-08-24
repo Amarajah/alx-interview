@@ -1,23 +1,38 @@
 #!/usr/bin/python3
-"""making change project"""
+"""
+Making Change
+"""
 
 
 def makeChange(coins, total):
-    """Return: fewest number of coins needed to meet total"""
+    """
+    Return the minimum number of coins needed to get a gven total
+    """
     if total <= 0:
         return 0
-
-    change = [float('inf')] * (total + 1)
-    change[0] = 0
-
-    for i in range(1, total + 1):
-        for j in range(len(coins)):
-            if coins[j] <= i:
-                sub_res = change[i - coins[j]]
-                if sub_res != float('inf') and sub_res + 1 < change[i]:
-                    change[i] = sub_res + 1
-
-    if change[total] == float('inf'):
+    if coins == [] or coins is None:
         return -1
-    else:
-        return change[total]
+    try:
+        n = coins.index(total)
+        return 1
+    except ValueError:
+        pass
+
+    coins.sort(reverse=True)
+    coin_count = 0
+    for i in coins:
+        if total % i == 0:
+            coin_count += int(total / i)
+            return coin_count
+        if total - i >= 0:
+            if int(total / i) > 1:
+                coin_count += int(total / i)
+                total = total % i
+            else:
+                coin_count += 1
+                total -= i
+                if total == 0:
+                    break
+    if total > 0:
+        return -1
+    return coin_count
